@@ -44,10 +44,13 @@ GetPalette ← {
   turbo
 }
 
-RGB256 ← {256|⌊∘÷⟜256⍟(⌽↕3)𝕩}
+RGB  ← {<˘∾⟜255˘∾˝⍉>256|⌊∘÷⟜256⍟(⌽↕3)𝕩}
+RGBA ← {<˘∾˝⍉>1⌽256|⌊∘÷⟜256⍟(⌽↕4)𝕩}
 
 GetColors ← {
-  𝕨≡"rgb" ? (255∾˜RGB256)¨⥊𝕩 ;
+  𝕨≡"rgb"  ? RGB 𝕩 ;
+  𝕨≡"rgba" ? RGBA 𝕩 ;
+
   palette ← 𝕨 GetPalette 𝕩
   rgb ← palette GetVm1 𝕩
   colors ← <˘∾⟜255˘∾˝rgb

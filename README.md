@@ -44,7 +44,7 @@ viridis Viewmat m
 ```
 ![voronoi](screenshots/voronoi.png)
 
-A vibrant _verde_ Voronoi visualiaion. _Voila!_
+A vibrant _verde_ Voronoi visualization. _Voila!_
 
 ### Perlin noise
 

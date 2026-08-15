@@ -4,7 +4,7 @@ This is a clone of [J's Viewmat](https://code.jsoftware.com/wiki/Studio/Viewmat)
 
 It relies on [raylib-bqn](https://github.com/Brian-ED/raylib-bqn).
 
-Currently the paths to both `libraylib.so` and `raylib.bqn` are hardcoded in `viewmat.bqn` so you will most likely need to modify those values to get it working
+Currently the paths to both `libraylib.so` and `raylib.bqn` are hard-coded in `viewmat.bqn` so you will most likely need to modify those values to get it working
 
 # Usage and examples
 
@@ -65,7 +65,7 @@ grayscale Viewmat +˝ (2⋆↕6) {𝕨×>state⊸NoiseN¨𝕨÷˜𝕩}○⊑˘ <
 
 ### RGB
 
-Passing "rgb" as the pallette will attempt to interpret the values as 24-bit RGB.
+Passing "rgb" as the palette will attempt to interpret the values as 24-bit RGB.
 This means you need to manually convert constructed RGB to 24-bit values.
 
 ```bqn
@@ -77,7 +77,7 @@ rgb ← ⍉2÷˜•math.Sin÷⟜10(+⌜∾⌈⌜≍-˜⌜)˜↕300
 
 Additionally, "rgba" is supported if you want to pass in an alpha channel (32-bit RGB).
 
-**TODO**: Add support for arrays of m×n×3 with the "rgb" palette to avoid the user having to to the conversion.
+**TODO**: Add support for arrays of shape m×n×3 with the "rgb" palette to avoid the user having to to the base conversion.
 
 # Caveats and limitation
 

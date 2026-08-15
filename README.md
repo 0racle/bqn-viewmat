@@ -42,8 +42,9 @@ p ← 50‿2 •rand.Range z
 m ← (⊑⊢⊐⌊´)⎉1 +˝⎉1×˜ c -⎉1⎉1‿∞ p
 viridis Viewmat m
 ```
-A vibrant _verde_ Voronoi visualiaion. _Voila!_
 ![voronoi](screenshots/voronoi.png)
+
+A vibrant _verde_ Voronoi visualiaion. _Voila!_
 
 ### Perlin noise
 

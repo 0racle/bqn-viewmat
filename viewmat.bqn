@@ -44,23 +44,31 @@ GetPalette ← {
   turbo
 }
 
-RGB  ← {<˘∾⟜255˘∾˝⍉>256|⌊∘÷⟜256⍟(⌽↕3)𝕩}
-RGBA ← {<˘∾˝⍉>1⌽256|⌊∘÷⟜256⍟(⌽↕4)𝕩}
+Merge ← {∾˘˝⍟(2-˜=)0‿0↓𝕩}
+
+RGB  ← {∾˝⍉>256|⌊∘÷⟜256⍟(⌽↕3)𝕩}
+RGBA ← {∾˝⍉>1⌽256|⌊∘÷⟜256⍟(⌽↕4)𝕩}
 
 GetColors ← {
-  𝕨≡"rgb"  ? RGB 𝕩 ;
+  𝕨≡"rgb"  ? RGB  𝕩 ;
   𝕨≡"rgba" ? RGBA 𝕩 ;
 
-  palette ← 𝕨 GetPalette 𝕩
-  rgb ← palette GetVm1 𝕩
-  colors ← <˘∾⟜255˘∾˝rgb
+  mat ← Merge 𝕩
+  palette ← 𝕨 GetPalette mat
+  ∾˝ palette GetVm1 mat
 }
+
+# IsRGB  ← {(𝕨≡"rgb")∧(=∧○(≤⟜3)⊢´∘≢)𝕩}
+# IsRGBA ← {(𝕨≡"rgba")∧(3==𝕩)∧4=⊢´∘≢𝕩}
+IsRGB ← {((𝕨≡"rgb")∨𝕨≡"rgba")∧(3==𝕩)∧⊑3‿4∊˜⊢´≢𝕩}
 
 Viewmat ← {𝕊𝕩: ⟨⟩𝕊𝕩; 𝕨𝕊𝕩:
 
-  shape ← ≢𝕩
-  h‿w ← size ← ≢ mat ← ∾˘˝⍟(2-˜=) 0‿0↓𝕩
-  colors ← 𝕨 GetColors mat
+  shape  ← ((=𝕩)-𝕨IsRGB𝕩)↑≢𝕩
+  size   ← 𝕨 IsRGB◶{≢Merge𝕩}‿{2↑≢𝕩} 𝕩
+  rgb    ← 𝕨 IsRGB◶GetColors‿{∾˝𝕩} 𝕩
+  colors ← <˘(∾⟜255˘)⍟(4>⊢´∘≢)rgb
+
   winw‿winh ← 100⌈⌊800‿800×(⍋size)⊏1∾÷˝∧size
 
   title ← "viewmat ("∾")"∾˜∾1↓∾˝'x'≍˘•Repr¨shape
@@ -68,6 +76,7 @@ Viewmat ← {𝕊𝕩: ⟨⟩𝕊𝕩; 𝕨𝕊𝕩:
   rl.InitWindow winw‿winh‿title
   rl.SetExitKey rl.keyboardKey.key_q
 
+  h‿w ← size
   white ← 255‿255‿255‿255
   img ← rl.GenImageColor⟨w,h,white⟩
   rl.ImageDrawPixel¨ (⟨⋈img⟩)⊸∾¨(∾˝⍉↕w‿h)∾⟜⋈¨colors

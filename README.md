@@ -65,19 +65,34 @@ grayscale Viewmat +˝ (2⋆↕6) {𝕨×>state⊸NoiseN¨𝕨÷˜𝕩}○⊑˘ <
 
 ### RGB
 
-Passing "rgb" as the palette will attempt to interpret the values as 24-bit RGB.
-This means you need to manually convert constructed RGB to 24-bit values.
+Passing "rgb" as the palette will attempt to interpret the values RGB.
+The array may be in the one of following formats
+  * m×n (2D) matrix of integers encoding 24-bit RGB, or 32-bit RGBA values
+  * m×n×3 array representing RGB values
+  * m×n×4 array representing RGBA values
 
 ```bqn
-AntiBase ← {+⟜(𝕨⊸×)´⌽≍⍟(1=≠)𝕩}
-rgb ← ⍉2÷˜•math.Sin÷⟜10(+⌜∾⌈⌜≍-˜⌜)˜↕300
-"rgb" Viewmat 256⊸Antibase˘˘⌊255×0.5+rgb
+c ← 2÷˜•math.Sin÷⟜10(+⌜∾⌈⌜≍-˜⌜)˜↕300
+•Show "rgb" Viewmat ⌊255×0.5+⍉c
 ```
 ![rgb](screenshots/rgb.png)
 
+Using "rgb" with a 2D matrix of integers will not consider any alpha channel if it exists. If you are passing in 32-bit RGBA values, use the "rgba" argument explicitly.
+
+**Note:** Using "rgba" with integers up to 24-bit will cause the alpha channel to be all `0`, and the resulting Viewmat will be black.
+
+Passing a m×n×4 array will consider the alpha channel regardless of whether "rgb" or "rgba" is used.
+
 Additionally, "rgba" is supported if you want to pass in an alpha channel (32-bit RGB).
 
-**TODO**: Add support for arrays of shape m×n×3 with the "rgb" palette to avoid the user having to to the base conversion.
+# See also
+
+The [bqn-pixbuf](https://github.com/0racle/bqn-pixbuf) library provides a simple interface for reading (and writing) images which plays nicely with Viewmat
+
+```bqn
+⟨ReadImg⟩ ← •Import "pixbuf.bqn"
+"rgb" Viewmat ReadImg "image.png"
+```
 
 # Caveats and limitation
 

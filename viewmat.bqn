@@ -80,7 +80,7 @@ Viewmat ← {𝕊𝕩: ⟨⟩𝕊𝕩; 𝕨𝕊𝕩:
   h‿w ← size
   white ← 255‿255‿255‿255
   img ← rl.GenImageColor⟨w,h,white⟩
-  rl.ImageDrawPixel¨ (⟨⋈img⟩)⊸∾¨(∾˝⍉↕w‿h)∾⟜⋈¨colors
+  rl.ImageDrawPixel¨ ⟨⋈img⟩⊸∾¨(∾˝⍉↕w‿h)∾⟜⋈¨colors
   tex ← rl.LoadTextureFromImage img
 
   Draw ← {𝕊:
@@ -100,4 +100,5 @@ Viewmat ← {𝕊𝕩: ⟨⟩𝕊𝕩; 𝕨𝕊𝕩:
       Draw⍟rl.IsWindowResized⟨⟩
     rl.EndDrawing⟨⟩
   }•_while_(¬rl.WindowShouldClose∘⟨⟩)@
+  rl.CloseWindow⟨⟩
 }

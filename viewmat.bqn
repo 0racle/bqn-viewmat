@@ -75,6 +75,7 @@ Viewmat ← {𝕊𝕩: ⟨⟩𝕊𝕩; 𝕨𝕊𝕩:
   rl.SetTraceLogLevel rl.rlTraceLogLevel.rL_LOG_ERROR
   rl.InitWindow winw‿winh‿title
   rl.SetExitKey rl.keyboardKey.key_q
+  rl.SetTargetFPS 15
 
   h‿w ← size
   white ← 255‿255‿255‿255
@@ -83,15 +84,13 @@ Viewmat ← {𝕊𝕩: ⟨⟩𝕊𝕩; 𝕨𝕊𝕩:
   tex ← rl.LoadTextureFromImage img
 
   Draw ← {𝕊:
-    rl.BeginDrawing⟨⟩
-      rl.DrawTexturePro⟨tex,
-        0‿0‿w‿h,
-        0‿0‿(rl.GetScreenWidth⟨⟩)‿(rl.GetScreenHeight⟨⟩),
-        0‿0,
-        0,
-        white
-      ⟩
-    rl.EndDrawing⟨⟩
+    rl.DrawTexturePro⟨tex,
+      0‿0‿w‿h,
+      0‿0‿(rl.GetScreenWidth⟨⟩)‿(rl.GetScreenHeight⟨⟩),
+      0‿0,
+      0,
+      white
+    ⟩
   }
 
   Draw⟨⟩

@@ -97,6 +97,3 @@ The [bqn-pixbuf](https://github.com/0racle/bqn-pixbuf) library provides a simple
 # Caveats and limitation
 
 Only tested on Linux, but presumably works anywhere `raylib.bqn` works.
-
-When I run Viewmat in the BQN repl, I cannot close the window.
-I'm not sure if this is an issue on my end. Running Viewmat in a script seems to work fine.

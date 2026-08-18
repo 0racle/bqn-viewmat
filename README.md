@@ -83,8 +83,6 @@ Using "rgb" with a 2D matrix of integers will not consider any alpha channel if 
 
 Passing a m×n×4 array will consider the alpha channel regardless of whether "rgb" or "rgba" is used.
 
-Additionally, "rgba" is supported if you want to pass in an alpha channel (32-bit RGB).
-
 # See also
 
 The [bqn-pixbuf](https://github.com/0racle/bqn-pixbuf) library provides a simple interface for reading (and writing) images which plays nicely with Viewmat
